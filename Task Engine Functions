@@ -1,0 +1,136 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Console;
+namespace Calendar
+{
+    public partial class TaskScheduler : Form
+    {
+        public TaskScheduler()
+        {
+            InitializeComponent();
+        }
+
+        private void ExitBtn_Click(object sender, EventArgs e)
+        {
+            // Exit the application
+            Application.Exit();
+        }
+
+
+
+        class Task
+        {
+            public string Description { get; set; }
+            public DateTime DateMade { get; set; }
+
+            public Task(string description, DateTime date1)
+            {
+                Description = description;
+                DateMade = date1;
+            }
+        }
+
+        private void AddTaskToListView(Task task)
+        {
+            ListViewItem listViewItem = new ListViewItem($"{task.Description}, {task.DateMade}");
+            listViewItem.Tag = task; // Set the Task object as the Tag
+            TaskList.Items.Add(listViewItem);
+        }
+
+        private void CreateTaskBtn_Click(object sender, EventArgs e)
+        {
+            // get the task description from the text box
+            string taskDescription = TaskDescTXT.Text;
+            DateTime date1 = DateMade.Value.Date + DateMade.Value.TimeOfDay;
+
+
+            // create a task object
+            Task taskObject = new Task(taskDescription, date1);
+
+            // create a ListViewItem and set its Tag property
+            ListViewItem listViewItem = new ListViewItem($"{taskObject.Description}, {taskObject.DateMade}");
+            listViewItem.Tag = taskObject;
+
+            // add the ListViewItem to the TaskList
+            TaskList.Items.Add(listViewItem);
+
+            // clear the text box
+            TaskDescTXT.Clear();
+
+            // set the focus to the text box
+            TaskDescTXT.Focus();
+        }
+
+        private void DeleteTaskBtn_Click(object sender, EventArgs e)
+        {
+
+            // Check if an item is selected before attempting to remove it
+            if (TaskList.SelectedItems != null)
+            {
+                try
+                {
+                    // Delete the highlighted task from the list box
+                    TaskList.Items.Remove(TaskList.SelectedItems[0]);
+                }
+                catch
+                {
+                    MessageBox.Show("Please select a task to delete.");
+                }
+            }
+
+
+            // Set focus to another control if needed (e.g., TaskDescTXT)
+            TaskDescTXT.Focus();
+
+
+        }
+        private void TaskList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TaskList.SelectedItems.Count > 0)
+            {
+                if (TaskList.SelectedItems[0].Tag is Task selectedTask)
+                {
+                    ModifyBoxTXT.Text = $"{selectedTask.Description}, {selectedTask.DateMade}";
+                }
+                else
+                {
+                    ModifyBoxTXT.Text = "Invalid selected item.";
+                }
+            }
+            else
+            {
+                ModifyBoxTXT.Text = string.Empty;
+            }
+
+
+        }
+
+        private void ModifyBtn_Click(object sender, EventArgs e)
+        {
+            //remove the previous Description and DateMade and replace it with the new one in ModifyBoxTXT
+            try
+            {
+                TaskList.SelectedItems[0].Text = ModifyBoxTXT.Text;
+            }
+            catch
+            {
+                MessageBox.Show("Please select a task to modify.");
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+    
+    
+
