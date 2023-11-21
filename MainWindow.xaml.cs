@@ -37,25 +37,51 @@ namespace CalendarApp
             // Calculate the day of the week for the first day of the month (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
             int startingDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
 
+            // Calculate the number of days from the previous month
+            int daysInPreviousMonth = startingDayOfWeek;
+            DateTime firstDayOfPreviousMonth = firstDayOfMonth.AddDays(-daysInPreviousMonth);
+
+            // Calculate the total number of cells needed in the grid (6 rows)
+            int totalCells = 6 * 7; // 6 rows * 7 columns
+
             // Clear existing content in the grid
             CalendarGrid.Children.Clear();
 
             // Populate the grid with dates
-            for (int day = 1; day <= daysInMonth; day++)
+            for (int day = 1; day <= totalCells; day++)
             {
-                // Calculate the row and column indices based on the starting day of the week
-                int row = (startingDayOfWeek + day - 1) / 7; // Integer division to determine the row
-                int col = (startingDayOfWeek + day - 1) % 7; // Modulus to determine the column
+                // Calculate the row and column indices based on the total number of cells
+                int row = (day - 1) / 7; // Integer division to determine the row
+                int col = (day - 1) % 7; // Modulus to determine the column
+
+                // Calculate the date for the current cell
+                DateTime currentDate = firstDayOfPreviousMonth.AddDays(day - 1);
 
                 // Create a label for each date
-                Label dateLabel = new Label
+                Button dateLabel = new Button
                 {
-                    Content = day.ToString(),
+                    Content = currentDate.Day.ToString(),
                     HorizontalContentAlignment = HorizontalAlignment.Left,
                     VerticalContentAlignment = VerticalAlignment.Top,
-                    BorderBrush = Brushes.Black,
-                    BorderThickness = new Thickness(1)
+                    BorderBrush = Brushes.Gray,
+                    Foreground = Brushes.Gray,
+                    BorderThickness = new Thickness(1),
+                    Background = Brushes.Transparent
                 };
+
+                // Set a different color for labels corresponding to dates outside the current month
+                if (currentDate.Month != month)
+                {
+                    dateLabel.Foreground = Brushes.LightGray; // You can choose any color
+                    dateLabel.BorderBrush = Brushes.LightGray;
+                }
+
+                else if (currentDate == DateTime.Today)
+                {
+                    dateLabel.Foreground = Brushes.Pink;
+                    dateLabel.BorderBrush = Brushes.Black;
+                    dateLabel.BorderThickness = new Thickness(2);
+                }
 
                 // Add the label to the grid at the calculated row and column
                 CalendarGrid.Children.Add(dateLabel);
@@ -63,7 +89,12 @@ namespace CalendarApp
                 Grid.SetColumn(dateLabel, col);
             }
         }
+
     }
+
 }
+
+
+
 
 

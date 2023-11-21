@@ -5,90 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalendarApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1024">
+        Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="600" MinWidth="1024">
     <Grid>
         <!--Main Grid-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="38.45"/>
-            <ColumnDefinition Width="947.1"/>
-            <ColumnDefinition Width="38.45"/>
+            <ColumnDefinition Width=".0375*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width=".0375*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"></RowDefinition>
-            <RowDefinition Height="37.5"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="2.5"/>
+            <RowDefinition Height=".15*"/>
+            <RowDefinition Height=".075*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height=".035*"/>
         </Grid.RowDefinitions>
 
         <!--Top UI Row-->
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="151.775"/>
-                <ColumnDefinition Width="75.89"/>
-                <ColumnDefinition Width="75.89"/>
-                <ColumnDefinition Width="340"/>
-                <ColumnDefinition Width="101.183"/>
-                <ColumnDefinition Width="101.183"/>
-                <ColumnDefinition Width="101.183"/>
+                <ColumnDefinition Width="1.665*"/>
+                <ColumnDefinition Width=".8325*"/>
+                <ColumnDefinition Width=".8325*"/>
+                <ColumnDefinition Width="3.33*"/>
+                <ColumnDefinition Width="1.11*"/>
+                <ColumnDefinition Width="1.11*"/>
+                <ColumnDefinition Width="1.11*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="3"
-                   Name="MonthLabel"  
-                   Width="340"
+                   Name="MonthLabel"             
                    HorizontalContentAlignment="Center"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
+                   VerticalAlignment="Center"
                    VerticalContentAlignment="Center"
-                   FontSize="24" FontFamily="Georgia"  
+                   FontSize="34" FontFamily="Georgia"  
                    FontWeight="Bold" Margin="0,0,0,0" Height="60"/>
             <Button Grid.Column="0" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
-            <Button Grid.Column="1" Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
-            <Button Grid.Column="2" Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
-            <Button Grid.Column="4" Content="&#xE721;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
+            <Button Grid.Column="1" Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Right"/>
+            <Button Grid.Column="2" Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Left"/>
+            <Button Grid.Column="4" Content="&#xE721;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalContentAlignment="Right" HorizontalAlignment="Right"/>
             <Button Grid.Column="5" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
-            <Button Grid.Column="6" Content="&#xE71C;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
+            <Button Grid.Column="6" Content="&#xE71C;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalContentAlignment="Left" HorizontalAlignment="Left"/>
         </Grid>
 
         <!--Days of the week row-->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Sunday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
-            <Label Grid.Row="0" Grid.Column="1" Content="Monday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
-            <Label Grid.Row="0" Grid.Column="2" Content="Tuesday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
-            <Label Grid.Row="0" Grid.Column="3" Content="Wednesday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
-            <Label Grid.Row="0" Grid.Column="4" Content="Thursday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
-            <Label Grid.Row="0" Grid.Column="5" Content="Friday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
-            <Label Grid.Row="0" Grid.Column="6" Content="Saturday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            <Label Grid.Row="0" Grid.Column="0" Content="Sunday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            <Label Grid.Row="0" Grid.Column="1" Content="Monday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            <Label Grid.Row="0" Grid.Column="2" Content="Tuesday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            <Label Grid.Row="0" Grid.Column="3" Content="Wednesday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            <Label Grid.Row="0" Grid.Column="4" Content="Thursday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            <Label Grid.Row="0" Grid.Column="5" Content="Friday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            <Label Grid.Row="0" Grid.Column="6" Content="Saturday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
         </Grid>
 
         <!-- Dates Grid -->
         <Grid Name="CalendarGrid" Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
-
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="1.67*"/>
+                <RowDefinition Height="1.67*"/>
+                <RowDefinition Height="1.67*"/>
+                <RowDefinition Height="1.67*"/>
+                <RowDefinition Height="1.67*"/>
+                <RowDefinition Height="1.67*"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
-                <ColumnDefinition Width="135.3"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
+                <ColumnDefinition Width="1.4286*"/>
             </Grid.ColumnDefinitions>
         </Grid>
     </Grid>
