@@ -1,0 +1,88 @@
+﻿<Page x:Class="CalendarApp.WeekView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CalendarApp"
+      mc:Ignorable="d" 
+      Title="WeekView">
+
+    <Grid Background="White">
+        <Frame x:Name="mainFrame"/>
+        <Grid>
+            <!--Main Grid-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".0375*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width=".0375*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".15*"/>
+                <RowDefinition Height=".075*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height=".035*"/>
+            </Grid.RowDefinitions>
+
+            <!--Top UI Row-->
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.665*"/>
+                    <ColumnDefinition Width=".8325*"/>
+                    <ColumnDefinition Width=".8325*"/>
+                    <ColumnDefinition Width="3.33*"/>
+                    <ColumnDefinition Width="1.11*"/>
+                    <ColumnDefinition Width="1.11*"/>
+                    <ColumnDefinition Width="1.11*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="3"
+                   Name="WeekLabel"             
+                   HorizontalContentAlignment="Center"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   FontSize="28" FontFamily="Georgia"  
+                   FontWeight="Bold" Margin="0,0,0,0" Height="60"/>
+                <Button Grid.Column="0" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
+                <Button Grid.Column="1" Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Right"/>
+                <Button Grid.Column="2" Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Left"/>
+                <Button Grid.Column="4" Content="&#xE721;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalContentAlignment="Right" HorizontalAlignment="Right"/>
+                <Button Grid.Column="5" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
+                <Button Grid.Column="6" Content="&#xE71C;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalContentAlignment="Left" HorizontalAlignment="Left"/>
+            </Grid>
+
+            <!--Days of the week row-->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Sunday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+                <Label Grid.Row="0" Grid.Column="1" Content="Monday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+                <Label Grid.Row="0" Grid.Column="2" Content="Tuesday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+                <Label Grid.Row="0" Grid.Column="3" Content="Wednesday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+                <Label Grid.Row="0" Grid.Column="4" Content="Thursday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+                <Label Grid.Row="0" Grid.Column="5" Content="Friday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+                <Label Grid.Row="0" Grid.Column="6" Content="Saturday" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Margin="0,0,0,0"></Label>
+            </Grid>
+
+            <!-- Dates Grid -->
+            <Grid Name="CalendarGrid" Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                    <ColumnDefinition Width="1.4286*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
