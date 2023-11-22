@@ -6,9 +6,62 @@
       xmlns:local="clr-namespace:CalendarApp"
       mc:Ignorable="d" 
       Title="MonthView">
+    
+    <Page.Resources>
+        <Style x:Key="HoverButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Width ="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="DeepPink"/>
+                                <Setter TargetName="border" Property="Background" Value="LightPink"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HoverButtonDDStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Width ="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
 
     <Grid Background="White">
-        <Frame x:Name="mainFrame"/>
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
         <!--Main Grid-->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -28,26 +81,28 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.665*"/>
                     <ColumnDefinition Width=".8325*"/>
-                    <ColumnDefinition Width=".8325*"/>
+                    <ColumnDefinition Width=".9325*"/>
                     <ColumnDefinition Width="3.33*"/>
-                    <ColumnDefinition Width="1.11*"/>
-                    <ColumnDefinition Width="1.11*"/>
-                    <ColumnDefinition Width="1.11*"/>
+                    <ColumnDefinition Width=".25*"/>
+                    <ColumnDefinition Width=".777*"/>
+                    <ColumnDefinition Width=".777*"/>
+                    <ColumnDefinition Width=".777*"/>
+                    <ColumnDefinition Width=".25*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="3"
-                   Name="MonthLabel"             
-                   HorizontalContentAlignment="Center"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   VerticalContentAlignment="Center"
-                   FontSize="34" FontFamily="Georgia"  
-                   FontWeight="Bold" Margin="0,0,0,0" Height="60"/>
-                <Button Grid.Column="0" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
-                <Button Grid.Column="1" Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Right"/>
-                <Button Grid.Column="2" Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Left"/>
-                <Button Grid.Column="4" Content="&#xE721;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalContentAlignment="Right" HorizontalAlignment="Right"/>
-                <Button Grid.Column="5" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20"/>
-                <Button Grid.Column="6" Content="&#xE71C;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalContentAlignment="Left" HorizontalAlignment="Left"/>
+               Name="MonthLabel"             
+               HorizontalContentAlignment="Center"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               VerticalContentAlignment="Center"
+               FontSize="34" FontFamily="Georgia"  
+               FontWeight="Bold" Margin="0,0,0,0" Height="60"/>
+                <Button Grid.Column="0" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" Style="{StaticResource HoverButtonStyle}"/>
+                <Button Grid.Column="1" Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Right" Style="{StaticResource HoverButtonStyle}" Click="PrevMonth_Click"/>
+                <Button Grid.Column="2" Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Left" Style="{StaticResource HoverButtonStyle}" Click="NextMonth_Click"/>
+                <Button Grid.Column="5" Content="&#xE721;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Right" Style="{StaticResource HoverButtonStyle}"/>
+                <Button Grid.Column="6" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Center" Style="{StaticResource HoverButtonStyle}"/>
+                <Button Grid.Column="7" Content="&#xE71C;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Left" Style="{StaticResource HoverButtonStyle}" Click="OpenDropDown_Click"/>
             </Grid>
 
             <!--Days of the week row-->

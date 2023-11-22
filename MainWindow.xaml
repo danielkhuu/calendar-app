@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalendarApp"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight" MinHeight="600" MinWidth="1200">
+        Title="Chronos" SizeToContent="WidthAndHeight" MinHeight="600" MinWidth="1200">
 
     <Grid>
-        <Frame x:Name="mainFrame"/>
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
