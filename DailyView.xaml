@@ -1,0 +1,147 @@
+﻿<!-- The Design for the Daily View Page -->
+    
+    <Page x:Class="CalendarApp.DailyView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CalendarApp"
+      mc:Ignorable="d" 
+      Title="DailyView">
+
+    <Page.Resources>
+        <Style x:Key="HoverButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Width ="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                           
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="DeepPink"/>
+                                <Setter TargetName="border" Property="Background" Value="LightPink"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="HoverButtonDDStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Width ="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+        
+    <Grid Background="White">
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
+        <Grid>
+            <!--Main Grid-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".0375*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width=".0375*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".15*"/>
+                <RowDefinition Height=".075*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height=".035*"/>
+            </Grid.RowDefinitions>
+
+            <!--Top UI Row-->
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.665*"/>
+                    <ColumnDefinition Width=".8325*"/>
+                    <ColumnDefinition Width=".9325*"/>
+                    <ColumnDefinition Width="3.33*"/>
+                    <ColumnDefinition Width=".25*"/>
+                    <ColumnDefinition Width=".777*"/>
+                    <ColumnDefinition Width=".777*"/>
+                    <ColumnDefinition Width=".777*"/>
+                    <ColumnDefinition Width=".25*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="3"
+               Name="DayLabel"             
+               HorizontalContentAlignment="Center"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               VerticalContentAlignment="Center"
+               FontSize="24" FontFamily="Georgia"  
+               FontWeight="Bold" Margin="0,0,0,0" Height="60"/>
+                <Button Grid.Column="0" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" Style="{StaticResource HoverButtonStyle}"/>
+                <Button Grid.Column="1" Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Right" Style="{StaticResource HoverButtonStyle}" Click="PrevDay_Click"/>
+                <Button Grid.Column="2" Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Left" Style="{StaticResource HoverButtonStyle}" Click="NextDay_Click"/>
+                <Button Grid.Column="5" Content="&#xE721;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Right" Style="{StaticResource HoverButtonStyle}"/>
+                <Button Grid.Column="6" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Center" Style="{StaticResource HoverButtonStyle}"/>
+                <Button Grid.Column="7" Content="&#xE71C;" FontFamily="Segoe MDL2 Assets" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Left" Style="{StaticResource HoverButtonStyle}" Click="OpenDropDown_Click"/>
+            </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".2*" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1"/>
+                    <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1"/>
+                        
+                    <Label Grid.Column="0" Content="Time" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Width="Auto"/>
+                    <Label Grid.Column="1" Content="Task" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontFamily="Georgia" FontWeight="Bold" Width="Auto"/>
+                
+                </Grid>
+                    
+                <!-- Time Grid - Will be updated upon database completion -->
+            <Grid Name="CalendarGrid" Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".25*"/>
+                    <RowDefinition Height=".25*"/>
+                    <RowDefinition Height=".25*"/>
+                    <RowDefinition Height=".25*"/>
+                </Grid.RowDefinitions>
+                
+                
+             
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
