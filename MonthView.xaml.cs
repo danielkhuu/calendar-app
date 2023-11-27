@@ -130,6 +130,13 @@ namespace CalendarApp
             }
         }
 
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddingTask taskwindow = new AddingTask();
+
+            taskwindow.Show();
+        }
+
         private void PopulateCalendarGrid(int year, int month)
         {
             // Get the first day of the month and the total days in the month
