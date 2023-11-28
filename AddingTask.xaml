@@ -5,26 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalendarApp"
         mc:Ignorable="d"
-        Title="AddingTask" Height="400" Width="400">
+        Title="AddingTask" SizeToContent="WidthAndHeight" MinHeight="400" MinWidth="400">
     <Grid>
-        <TextBlock Text="Add a task" Margin="0,17,0,-17"/>
-        <TextBox
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".45*"/>
+            <RowDefinition Height=".05*"/>
+
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="1" Text="Add A Task:" Padding="10,0"/>
+        <TextBox Grid.Row="2" Margin="10, 0"
             x:Name="TaskName"
-            Width="250"
-            Height="50"
-            Margin="10,42,0,342"
+            MinWidth="250"
+            MaxHeight="20"
             HorizontalAlignment="Left" TextChanged="TaskName_TextChanged"
+            VerticalAlignment="Top"
             />
-        <TextBlock Text="Add a description" Margin="0,92,0,-92"/>
-        <TextBox
+        <TextBlock Grid.Row="3" Text="Add A Description:" Padding="10,0"/>
+        <TextBox Grid.Row="4" Margin="10, 0"
             x:Name="TaskDescription"
-            Width="250"
+            MinWidth="250"
             Height="100"
-            Margin="10,117,540,217"
+            HorizontalAlignment="Left" TextChanged="TaskName_TextChanged"
+            VerticalAlignment="Top"
             />
-        <Button
+        <Button Grid.Row="5" Margin="10"
             x:Name="SaveTask" 
-            Margin="307,351,10,10"
             Width="75"
             Height="20"
             HorizontalAlignment="Right"
