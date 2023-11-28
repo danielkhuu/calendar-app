@@ -116,6 +116,18 @@ namespace CalendarApp
             }
         }
 
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddingTask addwindow = new AddingTask();
+            addwindow.Show();
+
+        }
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            SearchTask searchwindow = new SearchTask();
+            searchwindow.Show();
+        }
+
 
         //Needs to be updated once database is functional, currently just used for example
         private void PopulateCalendarGrid()
