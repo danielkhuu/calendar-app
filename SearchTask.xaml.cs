@@ -15,26 +15,23 @@ using System.Windows.Shapes;
 namespace CalendarApp
 {
     /// <summary>
-    /// Interaction logic for AddingTask.xaml
+    /// Interaction logic for SearchTask.xaml
     /// </summary>
-    public partial class AddingTask : Window
+    public partial class SearchTask : Window
     {
-        private string _title = "";
-        private string _description = "";
-        public AddingTask()
+        public SearchTask()
         {
             InitializeComponent();
         }
 
-        public void SaveTask_Click(object sender, RoutedEventArgs e)
+        private void SearchName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //add task to database here?
-            MessageBox.Show("Saved");
+
         }
 
-        private void TaskName_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchDate_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //read user input of name and description
+
         }
 
         private void CancelTask_Click(object sender, RoutedEventArgs e)
@@ -42,9 +39,9 @@ namespace CalendarApp
             this.Close();
         }
 
-        private void DateInput_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchTask_Click(object sender, RoutedEventArgs e)
         {
-            //read user input on date of a task/event
+
         }
     }
 }

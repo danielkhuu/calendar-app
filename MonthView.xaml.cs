@@ -132,9 +132,14 @@ namespace CalendarApp
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            AddingTask taskwindow = new AddingTask();
-
-            taskwindow.Show();
+            AddingTask addwindow = new AddingTask();
+            addwindow.Show();
+            
+        }
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            SearchTask searchwindow = new SearchTask();
+            searchwindow.Show();
         }
 
         private void PopulateCalendarGrid(int year, int month)
@@ -198,5 +203,6 @@ namespace CalendarApp
                 Grid.SetColumn(dateLabel, col);
             }
         }
+
     }
 }
