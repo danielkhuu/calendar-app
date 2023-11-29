@@ -43,5 +43,10 @@ namespace CalendarApp
         {
 
         }
+
+        private void ScheduleType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
