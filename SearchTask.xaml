@@ -28,10 +28,10 @@
                  HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock Grid.Row="2" Text="Search Date" Padding="10,10"/>
-        <TextBox Grid.Row="3" MinWidth="150" MaxHeight="20" 
+        <DatePicker Grid.Row="3" MinWidth="150" MaxHeight="30" 
                  Margin="10,0"
                  x:Name="SearchDate" HorizontalAlignment="Left" VerticalAlignment="Center"
-                 TextChanged="SearchDate_TextChanged"/>
+                 />
 
         <Button Grid.Row="4" 
         x:Name="SearchingTask" 
