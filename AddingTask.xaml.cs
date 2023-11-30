@@ -46,5 +46,10 @@ namespace CalendarApp
         {
             //read user input on date of a task/event
         }
+
+        private void ScheduleType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

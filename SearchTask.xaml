@@ -27,11 +27,17 @@
                  MaxHeight="20" TextChanged="SearchName_TextChanged"
                  HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <TextBlock Grid.Row="2" Text="Search Date" Padding="10,10"/>
-        <TextBox Grid.Row="3" MinWidth="150" MaxHeight="20" 
+        <TextBlock Grid.Row="2" Text="Search Date" Padding="10,10" Margin="0,0,240,0"/>
+        <DatePicker Grid.Row="3" MinWidth="150" MaxHeight="30" 
                  Margin="10,0"
                  x:Name="SearchDate" HorizontalAlignment="Left" VerticalAlignment="Center"
-                 TextChanged="SearchDate_TextChanged"/>
+                 />
+        <TextBlock Grid.Row="2" Text="Search Type" Padding="20,10" HorizontalAlignment="Left" Margin="240,0,0,0" Width="160"/>
+        <ComboBox x:Name="ScheduleType" MinWidth="150" MaxHeight="30" Margin="240,5,10,5" Grid.Row="3" SelectionChanged="ScheduleType_SelectionChanged">
+            <ComboBoxItem Content="Appointment" Height="27" Width="90" />
+            <ComboBoxItem Content="Task" Height="27" Width="90" />
+            <ComboBoxItem Content="Event" Height="27" Width="90" />
+        </ComboBox>
 
         <Button Grid.Row="4" 
         x:Name="SearchingTask" 
