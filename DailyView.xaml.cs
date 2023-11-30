@@ -127,7 +127,11 @@ namespace CalendarApp
             SearchTask searchwindow = new SearchTask();
             searchwindow.Show();
         }
-
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            CalendarSettings settings = new CalendarSettings();
+            settings.Show();
+        }
 
         //Needs to be updated once database is functional, currently just used for example
         private void PopulateCalendarGrid()

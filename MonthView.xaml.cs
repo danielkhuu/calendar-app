@@ -141,6 +141,11 @@ namespace CalendarApp
             SearchTask searchwindow = new SearchTask();
             searchwindow.Show();
         }
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            CalendarSettings settings = new CalendarSettings();
+            settings.Show();
+        }
 
         private void PopulateCalendarGrid(int year, int month)
         {
