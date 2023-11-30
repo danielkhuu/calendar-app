@@ -135,7 +135,11 @@ namespace CalendarApp
             SearchTask searchwindow = new SearchTask();
             searchwindow.Show();
         }
-
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            CalendarSettings settings = new CalendarSettings();
+            settings.Show();
+        }
         private void PopulateCalendarGrid(DateTime dayX)
         { 
             // Calculate the day of the week for the first day of the month (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
@@ -177,5 +181,6 @@ namespace CalendarApp
                 Grid.SetColumn(dateLabel, col);
             }
         }
+
     }
 }
