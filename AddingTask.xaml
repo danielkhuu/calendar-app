@@ -1,0 +1,83 @@
+﻿<Window x:Class="CalendarApp.AddingTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalendarApp"
+        mc:Ignorable="d"
+        Title="AddingTask" Height="500" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".19*"/>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".35*"/>
+            <RowDefinition Height=".05*"/>
+
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Add A Task:" Padding="10,10"/>
+        <TextBox Grid.Row="1" Margin="10, 0"
+            x:Name="TaskName"
+            MinWidth="250"
+            MaxHeight="20"
+            HorizontalAlignment="Left" TextChanged="TaskName_TextChanged"
+            VerticalAlignment="Top"
+            TextWrapping="Wrap"
+            />
+
+        <TextBlock Grid.Row="2" Text="Add A Description:" Padding="10, 10"/>
+        <TextBox Grid.Row="3" Margin="10, 0"
+            x:Name="TaskDescription"
+            MinWidth="250"
+            Height="100"
+            HorizontalAlignment="Left" TextChanged="TaskName_TextChanged"
+            VerticalAlignment="Top"
+            TextWrapping="Wrap"
+            />
+
+        <TextBlock Grid.Row="3" Text="Add date:" Padding="10,10" Margin="0,116,0,129" Grid.RowSpan="3" />
+        <DatePicker HorizontalAlignment="Left" Margin="10,0" Grid.Row="5" VerticalAlignment="Top" Width="125" Height="30" />
+
+        <TextBlock Grid.Row="3" Text="Add type:" HorizontalAlignment="Left" Padding="10,10" Margin="219,116,0,129" Grid.RowSpan="3" />
+        <ComboBox x:Name="ScheduleType" Grid.Row="4" MinWidth="90" MaxHeight="35" Margin="155,30,10,183" Grid.RowSpan="2" SelectionChanged="ScheduleType_SelectionChanged">
+            <ComboBoxItem Content="Appointment" Height="27" Width="90"/>
+            <ComboBoxItem Content="Event" Height="27" Width="90" />
+            <ComboBoxItem Content="Task" Height="27" Width="90" />
+        </ComboBox>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".15*"/>
+                <ColumnDefinition Width=".35*"/>
+                <ColumnDefinition Width=".35*"/>
+                <ColumnDefinition Width=".15*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="1" 
+            x:Name="SaveTask" 
+            Width="75"
+            Height="20"
+            HorizontalAlignment="Center"
+            Click="SaveTask_Click"
+            Content="Save" 
+            />
+            <Button Grid.Row="0" Grid.Column="2"
+            x:Name="CancelTask"
+            Width="75" Height="20"
+            HorizontalAlignment="Center" Click="CancelTask_Click"
+            Content="Cancel"
+                />
+
+        </Grid>
+
+    </Grid>
+</Window>
