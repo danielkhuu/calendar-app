@@ -33,7 +33,7 @@ namespace CalendarApp
             string _TaskDescription = TaskDescription.Text;
             string _TaskDate = TaskDate.Text;
             _databaseManager.AddEvent(_TaskName, _TaskDescription, _TaskDate);
-            MessageBox.Show("Event Added");
+            MessageBox.Show("Task Added");
             this.Close();
 
         }

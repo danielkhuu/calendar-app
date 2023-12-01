@@ -57,7 +57,6 @@ namespace CalendarApp
                     DateTime storedEventDate = result.CalendarDate;
 
                     returnData = eventId.ToString() + " " + eventDescription + " " + storedEventDate.ToString();
-
                 }
                 else
                 {
@@ -105,17 +104,5 @@ namespace CalendarApp
 }
 
 
-//CalendarDayId = connection.QueryFirstOrDefault<int>($"SELECT Id FROM CalendarDay WHERE Date = '{date}'");
 
 
-/*    try
-{
-    CalendarDayId = connection.QueryFirstOrDefault<int>($"SELECT CASE WHEN EXISTS ( SELECT Id FROM CalendarDay WHERE Date = '{date}') THEN 'TRUE' ELSE 'FALSE' END");
-}
-catch
-{
-    MessageBox.Show("Day not found. Inserting new day in CalendarDay and returning Id");
-    connection.Execute("INSERT INTO CalendarDay (Date) VALUES(@Date)", new { date });
-    CalendarDayId = connection.QueryFirstOrDefault<int>($"SELECT CASE WHEN EXISTS ( SELECT Id FROM CalendarDay WHERE Date = '{date}' ) THEN 'TRUE' ELSE 'FALSE' END");
-
-}   */

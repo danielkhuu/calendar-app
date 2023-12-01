@@ -46,7 +46,6 @@ namespace CalendarApp
         private void SearchTask_Click(object sender, RoutedEventArgs e)
         {
             _databaseManager.SearchEvent(_SearchName, _SearchDate);
-            MessageBox.Show("Task Search");
         }
     }
 }
