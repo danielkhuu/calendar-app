@@ -21,6 +21,7 @@ namespace CalendarApp
     {
         private string _title = "";
         private string _description = "";
+        private DatabaseManager _databaseManager = new DatabaseManager();
         public AddingTask()
         {
             InitializeComponent();
@@ -29,7 +30,12 @@ namespace CalendarApp
         public void SaveTask_Click(object sender, RoutedEventArgs e)
         {
             //add task to database here?
-            MessageBox.Show("Saved");
+            string _TaskName = TaskName.Text;
+            string _TaskDescription = TaskDescription.Text;
+            string _TaskDate = TaskDate.Text;
+            _databaseManager.AddEvent(_TaskName, _TaskDescription, _TaskDate);
+            MessageBox.Show("Task Added");
+            this.Close();
         }
 
         private void TaskName_TextChanged(object sender, TextChangedEventArgs e)
