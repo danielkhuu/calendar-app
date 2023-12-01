@@ -39,7 +39,35 @@ namespace CalendarApp
         public void SearchEvent(string SearchName, string date)
         {
             DateTime _date = DateTime.Parse(date);
-            string query = "SELECT Event.* FROM Event INNER JOIN CalendarDay ON Event.calendarDayId = CalendarDay.id WHERE Event.name = 'searchName' AND CalendarDay.date = '_date'";
+            string returnData = "";
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("CalendarDB")))
+            {
+                string query = "SELECT Event.*, CalendarDay.Id AS CalendarDayId, CalendarDay.Date AS CalendarDate " +
+                               "FROM Event " +
+                               "INNER JOIN CalendarDay ON Event.CalendarDayId = CalendarDay.Id " +
+                               "WHERE Event.Name = @Name AND CalendarDay.Date = @Date";
+
+                var result = connection.QueryFirstOrDefault(query, new { Name = SearchName, Date = _date });
+
+                if (result != null)
+                {
+                    // Access the variables from the result
+                    int eventId = result.Id;
+                    string eventDescription = result.Description;
+                    DateTime storedEventDate = result.CalendarDate;
+
+                    returnData = eventId.ToString() + " " + eventDescription + " " + storedEventDate.ToString();
+
+                }
+                else
+                {
+                    // Handle the case where no matching record is found
+                    Console.WriteLine("No matching record found.");
+                }
+            }
+            MessageBox.Show(returnData);
+
+            //string query = "SELECT Event.* FROM Event INNER JOIN CalendarDay ON Event.calendarDayId = CalendarDay.id WHERE Event.name = 'searchName' AND CalendarDay.date = '_date'";
         }
 
         public int FindDay(DateTime date)
