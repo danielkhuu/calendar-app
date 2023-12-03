@@ -29,13 +29,13 @@ namespace CalendarApp
 
         public void SaveTask_Click(object sender, RoutedEventArgs e)
         {
-            //add task to database here?
             string _TaskName = TaskName.Text;
             string _TaskDescription = TaskDescription.Text;
             string _TaskDate = TaskDate.Text;
             _databaseManager.AddEvent(_TaskName, _TaskDescription, _TaskDate);
             MessageBox.Show("Task Added");
             this.Close();
+
         }
 
         private void TaskName_TextChanged(object sender, TextChangedEventArgs e)
@@ -51,11 +51,6 @@ namespace CalendarApp
         private void DateInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             //read user input on date of a task/event
-        }
-
-        private void ScheduleType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
