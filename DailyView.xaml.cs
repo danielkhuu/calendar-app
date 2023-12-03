@@ -50,6 +50,7 @@ namespace CalendarApp
             _year = prevDay.Year;
 
             DayLabel.Content = prevDay.ToLongDateString();
+            PopulateCalendarGrid();
         }
         private void NextDay_Click(object sender, RoutedEventArgs e)
         {
@@ -61,6 +62,7 @@ namespace CalendarApp
             _year = nextDay.Year;
 
             DayLabel.Content = nextDay.ToLongDateString();
+            PopulateCalendarGrid();
         }
 
         private void OpenDropDown_Click(object sender, RoutedEventArgs e)
@@ -133,15 +135,22 @@ namespace CalendarApp
             settings.Show();
         }
 
-        //Needs to be updated once database is functional, currently just used for example
         private void PopulateCalendarGrid()
         {
+            CalendarGrid.Children.Clear();
 
-            for (int i = 1; i < 5; i++)
+            DatabaseManager databaseManager = new DatabaseManager();
+
+            DateTime _today = new DateTime(_year, _month, _day);
+            var tasksForDate = databaseManager.RetrieveEventDataByDate(_today);
+
+            int i = 1;
+
+            foreach (Event _event in tasksForDate)
             {
                 Label timeLabel = new Label
                 {
-                    Content = i.ToString() + ":00",
+                    Content = _event.name,
                     HorizontalContentAlignment = HorizontalAlignment.Left,
                     VerticalContentAlignment = VerticalAlignment.Top,
                     BorderBrush = Brushes.Gray,
@@ -156,7 +165,7 @@ namespace CalendarApp
 
                 Button taskLabel = new Button
                 {
-                    Content = "Example Task - Example Description",
+                    Content = _event.description,
                     HorizontalContentAlignment = HorizontalAlignment.Left,
                     VerticalContentAlignment = VerticalAlignment.Top,
                     BorderBrush = Brushes.Gray,
@@ -168,6 +177,8 @@ namespace CalendarApp
                 CalendarGrid.Children.Add(taskLabel);
                 Grid.SetRow(taskLabel, i-1);
                 Grid.SetColumn(taskLabel, 1);
+
+                i++;
             }
         }
         
