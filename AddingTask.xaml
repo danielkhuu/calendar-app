@@ -42,14 +42,16 @@
             />
 
         <TextBlock Grid.Row="3" Text="Add date:" Padding="10,10" Margin="0,116,0,129" Grid.RowSpan="3" />
-        <DatePicker HorizontalAlignment="Left" Margin="10,0" Grid.Row="5" VerticalAlignment="Top" Width="125" Height="30" />
+        <DatePicker x:Name="TaskDate" HorizontalAlignment="Left" Margin="10,0" Grid.Row="5" VerticalAlignment="Top" Width="125" Height="30" />
 
         <TextBlock Grid.Row="3" Text="Add type:" HorizontalAlignment="Left" Padding="10,10" Margin="219,116,0,129" Grid.RowSpan="3" />
-        <ComboBox x:Name="ScheduleType" Grid.Row="4" MinWidth="90" MaxHeight="35" Margin="155,30,10,183" Grid.RowSpan="2" SelectionChanged="ScheduleType_SelectionChanged">
-            <ComboBoxItem Content="Appointment" Height="27" Width="90"/>
-            <ComboBoxItem Content="Event" Height="27" Width="90" />
-            <ComboBoxItem Content="Task" Height="27" Width="90" />
-        </ComboBox>
+        <!--
+            <ComboBox x:Name="ScheduleType" Grid.Row="4" MinWidth="90" MaxHeight="35" Margin="155,30,10,183" Grid.RowSpan="2" SelectionChanged="ScheduleType_SelectionChanged">
+                <ComboBoxItem Content="Appointment" Height="27" Width="90"/>
+                <ComboBoxItem Content="Event" Height="27" Width="90" />
+                <ComboBoxItem Content="Task" Height="27" Width="90" />
+            </ComboBox>
+        -->
 
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>

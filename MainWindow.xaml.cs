@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SQLite;
+using System.IO;
 
 namespace CalendarApp
 {
@@ -23,8 +25,10 @@ namespace CalendarApp
     {
         public MainWindow()
         {
+            string dbFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CalendarDB.sqlite");
+            Helper sqliteHelper = new Helper(dbFilePath);
             InitializeComponent();       
-            mainFrame.Navigate(new MonthView());       
+            mainFrame.Navigate(new MonthView());
         }
  
     }
