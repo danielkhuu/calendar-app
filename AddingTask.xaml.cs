@@ -32,10 +32,10 @@ namespace CalendarApp
             string _TaskName = TaskName.Text;
             string _TaskDescription = TaskDescription.Text;
             string _TaskDate = TaskDate.Text;
-            _databaseManager.AddEvent(_TaskName, _TaskDescription, _TaskDate);
+            string _TaskType = ScheduleType.Text;
+            _databaseManager.AddEvent(_TaskName, _TaskDescription, _TaskDate, _TaskType);
             MessageBox.Show("Task Added");
             this.Close();
-
         }
 
         private void TaskName_TextChanged(object sender, TextChangedEventArgs e)

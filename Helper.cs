@@ -52,7 +52,7 @@ namespace CalendarApp
                     command.ExecuteNonQuery();
                 }
 
-                createTableQuery = "CREATE TABLE IF NOT EXISTS Event (Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Description TEXT NULL, CalendarDayId INTEGER NOT NULL, CONSTRAINT FK_Event_Day FOREIGN KEY (CalendarDayId) REFERENCES CalendarDay(Id))";
+                createTableQuery = "CREATE TABLE IF NOT EXISTS Event (Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Description TEXT NULL, Type TEXT NULL, CalendarDayId INTEGER NOT NULL, CONSTRAINT FK_Event_Day FOREIGN KEY (CalendarDayId) REFERENCES CalendarDay(Id))";
 
                 using (SQLiteCommand command = new SQLiteCommand(createTableQuery, connection))
                 {

@@ -27,29 +27,28 @@ namespace CalendarApp
             }
         }
 
-        public void AddEvent(string Name, string Description, string _date)
+        public void AddEvent(string Name, string Description, string _date, string _type)
         {
             DateTime Date = DateTime.Parse(_date);
             int CalendarDayId = FindDay(Date);
             using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal("CalendarDB")))
             {
-                connection.Execute("INSERT INTO Event (Name, Description, CalendarDayID) VALUES(@Name ,@Description, @CalendarDayId)", new { Name, Description, Date, CalendarDayId});
+                connection.Execute("INSERT INTO Event (Name, Description, Type, CalendarDayID) VALUES(@Name ,@Description, @Type, @CalendarDayId)", new { Name, Description, Type=_type, CalendarDayId});
             }
         }
 
-        public List<Event> RetrieveEventDataByDate(string _date)
+        public List<Event> RetrieveEventDataByDate(DateTime _date)
         {
             List<Event> returnEvents = new List<Event>();
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("CalendarDB")))
+            using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal("CalendarDB")))
             {
-                DateTime Date = DateTime.Parse(_date);
-
+              
                 // Step 1: Check if the date exists in CalendarDay
                 //string calendarDayQuery = "SELECT Id FROM CalendarDay WHERE Date = @Date";
-                int calendarDayId = FindDay(Date);
+                int calendarDayId = FindDay(_date);
 
                 // Step 2: Retrieve Event data based on the matching CalendarDayId
-                string eventQuery = "SELECT * FROM Event WHERE CalendarDayId = @calendarDayId";
+                string eventQuery = "SELECT * FROM Event WHERE CalendarDayId = @CalendarDayId";
                 //var eventData = connection.Query<Event>(eventQuery, new { CalendarDayId = calendarDayId });
                 returnEvents = connection.Query<Event>(eventQuery, new { CalendarDayId = calendarDayId }).ToList();
             }
@@ -68,7 +67,7 @@ namespace CalendarApp
         {
             DateTime _date = DateTime.Parse(date);
             string returnData = "";
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("CalendarDB")))
+            using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal("CalendarDB")))
             {
                 string query = "SELECT Event.*, CalendarDay.Id AS CalendarDayId, CalendarDay.Date AS CalendarDate " +
                                "FROM Event " +
@@ -80,7 +79,7 @@ namespace CalendarApp
                 if (result != null)
                 {
                     // Access the variables from the result
-                    int eventId = result.Id;
+                    int eventId = (int)result.Id;
                     string eventDescription = result.Description;
                     DateTime storedEventDate = result.CalendarDate;
 
@@ -104,7 +103,7 @@ namespace CalendarApp
         public int FindDay(DateTime date)
         {
             int CalendarDayId = -1;
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("CalendarDB")))
+            using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal("CalendarDB")))
             {   /* Attempt to find calendar day in DB if there are existing tasks for that day */
                 try
                 {
@@ -119,7 +118,6 @@ namespace CalendarApp
                     else
                     {
                         // Day doesn't exist, insert a new day
-                        MessageBox.Show("Day not found. Inserting new day in CalendarDay and returning Id");
                         connection.Execute("INSERT INTO CalendarDay (Date) VALUES (@Date)", new { Date = date });
                         CalendarDayId = connection.QueryFirstOrDefault<int>("SELECT Id FROM CalendarDay WHERE Date = @Date", new { Date = date });
                     }
