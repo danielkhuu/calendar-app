@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Functions for MonthView page
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,13 +26,19 @@ namespace CalendarApp
         public MonthView()
         {
             InitializeComponent();
+
+            // initialize data for Month page
             _month = DateTime.Now.Month;
             _year = DateTime.Now.Year;
+
+            // Display today's month and year
             MonthLabel.Content = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.ToString("yyyy");
 
+            // Create and populate the date grid
             PopulateCalendarGrid(_year, _month);
         }
 
+        // Function to display previous month
         private void PrevMonth_Click(object sender, RoutedEventArgs e)
         {
             int prevMonth, prevYear;
@@ -54,6 +62,7 @@ namespace CalendarApp
             
         }
 
+        // Function to display next month
         private void NextMonth_Click(object sender, RoutedEventArgs e)
         {
             int nextMonth, nextYear;
@@ -77,6 +86,7 @@ namespace CalendarApp
 
         }
 
+        // Dropdown for changing the page
         private void OpenDropDown_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu dropdownMenu = new ContextMenu();
@@ -102,6 +112,7 @@ namespace CalendarApp
             dropdownMenu.IsOpen = true;
         }
 
+        // Changes the page based on which dropdown button was clicked
         private void DropdownButton_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = sender as Button;
@@ -130,22 +141,28 @@ namespace CalendarApp
             }
         }
 
+        // Opens add task window
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
             AddingTask addwindow = new AddingTask();
             addwindow.Show();
         }
+
+        // Opens search task window
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             SearchTask searchwindow = new SearchTask();
             searchwindow.Show();
         }
+
+        // Opens settings window
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             CalendarSettings settings = new CalendarSettings();
             settings.Show();
         }
 
+        // Creates and populates the dates grid
         public void PopulateCalendarGrid(int year, int month)
         {
             DatabaseManager databaseManager = new DatabaseManager();
@@ -176,8 +193,11 @@ namespace CalendarApp
 
                 // Calculate the date for the current cell
                 DateTime currentDate = firstDayOfPreviousMonth.AddDays(day - 1);
+
+                // Retrieve tasks for the current date
                 var tasksForDate = databaseManager.RetrieveEventDataByDate(currentDate);
                 string taskNames = string.Join("\n", tasksForDate.Select(t => t.name));
+
                 // Create a label for each date
                 Button dateLabel = new Button
                 {
@@ -190,6 +210,7 @@ namespace CalendarApp
                     Background = Brushes.Transparent
                 };
 
+                // Add task names
                 dateLabel.Content += "\n" + taskNames;
 
                 // Set a different color for labels corresponding to dates outside the current month
@@ -205,8 +226,6 @@ namespace CalendarApp
                     dateLabel.BorderBrush = Brushes.Black;
                     dateLabel.BorderThickness = new Thickness(2);
                 }
-
-                
 
                 // Add the label to the grid at the calculated row and column
                 CalendarGrid.Children.Add(dateLabel);

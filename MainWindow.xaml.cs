@@ -25,8 +25,11 @@ namespace CalendarApp
     {
         public MainWindow()
         {
+            // Checks if database exists in the current folder and creates it if not
             string dbFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CalendarDB.sqlite");
             Helper sqliteHelper = new Helper(dbFilePath);
+
+            // initializes window and opens the startup page
             InitializeComponent();       
             mainFrame.Navigate(new MonthView());
         }

@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace CalendarApp
 {
-    /// <summary>
-    /// Interaction logic for DailyView.xaml
-    /// </summary>
     public partial class DailyView : Page
     {
         private int _month { get; set; }
@@ -30,17 +27,21 @@ namespace CalendarApp
         {
             InitializeComponent();
 
+            // initialize data for page
             DateTime today = DateTime.Today;
             Today = today;
             _month = today.Month;
             _year = today.Year;
             _day = today.Day;
 
+            // Display today's date
             DayLabel.Content = Today.ToLongDateString();
 
+            // Create and display grid
             PopulateCalendarGrid();
         }
 
+        // Function to display previous day
         private void PrevDay_Click(object sender, RoutedEventArgs e)
         {
             DateTime prevDay = new DateTime(_year, _month, _day);
@@ -53,6 +54,8 @@ namespace CalendarApp
             DayLabel.Content = prevDay.ToLongDateString();
             PopulateCalendarGrid();
         }
+
+        // Function to display next day
         private void NextDay_Click(object sender, RoutedEventArgs e)
         {
             DateTime nextDay = new DateTime(_year, _month, _day);
@@ -66,6 +69,7 @@ namespace CalendarApp
             PopulateCalendarGrid();
         }
 
+        // Dropdown for changing the page
         private void OpenDropDown_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu dropdownMenu = new ContextMenu();
@@ -91,6 +95,7 @@ namespace CalendarApp
             dropdownMenu.IsOpen = true;
         }
 
+        // Changes the page based on which dropdown button was clicked
         private void DropdownButton_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = sender as Button;
@@ -119,33 +124,42 @@ namespace CalendarApp
             }
         }
 
+        // Opens add task window
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
             AddingTask addwindow = new AddingTask();
             addwindow.Show();
 
         }
+
+        // Opens search task window
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             SearchTask searchwindow = new SearchTask();
             searchwindow.Show();
         }
+
+        // Opens settings window
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             CalendarSettings settings = new CalendarSettings();
             settings.Show();
         }
 
+        // Creates and populates the dates grid
         private void PopulateCalendarGrid()
         {
+            // Clear previous data
             CalendarGrid.Children.Clear();
 
+            // Retrieve tasks for today's date
             DatabaseManager databaseManager = new DatabaseManager();
             DateTime dateTime = new DateTime(_year, _month, _day);
             var tasksForDate = databaseManager.RetrieveEventDataByDate(dateTime);
 
             int i = 1;
 
+            // Create grid row for each task in the date
             foreach (Event _event in tasksForDate)
             {
                 Label timeLabel = new Label
