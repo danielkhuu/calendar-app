@@ -41,21 +41,31 @@
 
         <Button Grid.Row="4" 
         x:Name="SearchingTask" 
-        Width="75"
+        Width="76"
         Height="20"
-        Margin="100,0,0,10"
-        HorizontalAlignment="Left"
-        VerticalAlignment="Bottom"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
         Click="SearchTask_Click"
-        Content="Search" 
+        Content="Search" Margin="0,19,0,0" 
         />
         <Button Grid.Row="4" 
         x:Name="CancelTask"
-        Width="75" Height="20"
-        Margin="0,0,100,10"
+        Width="74" Height="20"
+        Margin="0,0,43,10"
         HorizontalAlignment="Right" VerticalAlignment="Bottom"
         Click="CancelTask_Click"
         Content="Cancel"
         />
+        <Button Grid.Row="4" 
+        x:Name="DeletingTask" 
+        Width="76"
+        Height="20"
+        Margin="42,0,0,10"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        Click="DeleteTask_Click"
+        Content="Delete" 
+        />
+
     </Grid>
 </Window>

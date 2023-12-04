@@ -83,7 +83,7 @@ namespace CalendarApp
                     string eventDescription = result.Description;
                     DateTime storedEventDate = result.CalendarDate;
 
-                    returnData = eventId.ToString() + " " + eventDescription + " " + storedEventDate.ToString();
+                    returnData = SearchName + ": " + eventDescription + "\n Date:" + storedEventDate.ToString();
                 }
                 else
                 {
@@ -129,6 +129,54 @@ namespace CalendarApp
                 }
             }
             return CalendarDayId;
+        }
+
+        public void RemoveEventAndCalendarDay(string eventName, string _date)
+        {
+            DateTime eventDate = DateTime.Parse(_date);
+
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(Helper.CnnVal("CalendarDB")))
+            {
+                connection.Open();
+                IDbTransaction transaction = connection.BeginTransaction();
+
+                try
+                {
+                    // Step 1: Retrieve CalendarDayId based on eventDate
+                    string calendarDayQuery = "SELECT Id FROM CalendarDay WHERE Date = @EventDate";
+                    int calendarDayId = connection.QueryFirstOrDefault<int>(calendarDayQuery, new { EventDate = eventDate }, transaction);
+
+                    if (calendarDayId != 0) // Assuming 0 is not a valid Id
+                    {
+                        // Step 2: Remove the event from the Event table
+                        string removeEventQuery = "DELETE FROM Event WHERE Name = @EventName AND CalendarDayId = @CalendarDayId";
+                        connection.Execute(removeEventQuery, new { EventName = eventName, CalendarDayId = calendarDayId }, transaction);
+
+                        // Step 3: Check if the CalendarDay has no more events
+                        string remainingEventsQuery = "SELECT COUNT(*) FROM Event WHERE CalendarDayId = @CalendarDayId";
+                        int remainingEvents = connection.ExecuteScalar<int>(remainingEventsQuery, new { CalendarDayId = calendarDayId }, transaction);
+
+                        if (remainingEvents == 0)
+                        {
+                            // Step 4: Remove the CalendarDay if it has no more events
+                            string removeCalendarDayQuery = "DELETE FROM CalendarDay WHERE Id = @CalendarDayId";
+                            connection.Execute(removeCalendarDayQuery, new { CalendarDayId = calendarDayId }, transaction);
+                        }
+                        MessageBox.Show("Removed");
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No matching records found in CalendarDay table.");
+                        transaction.Rollback();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    transaction.Rollback();
+                }
+            }
         }
     }
 }

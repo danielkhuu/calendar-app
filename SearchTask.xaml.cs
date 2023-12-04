@@ -52,5 +52,12 @@ namespace CalendarApp
         {
             
         }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            string _SearchName = SearchName.Text;
+            string _SearchDate = SearchDate.Text;
+            _databaseManager.RemoveEventAndCalendarDay(_SearchName, _SearchDate);
+        }
     }
 }
