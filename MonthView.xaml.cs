@@ -17,8 +17,8 @@ namespace CalendarApp
 {
     public partial class MonthView : Page
     {
-        private int _month { get; set; }
-        private int _year {get; set; }
+        public int _month { get; set; }
+        public int _year {get; set; }
 
 
         public MonthView()
@@ -134,7 +134,6 @@ namespace CalendarApp
         {
             AddingTask addwindow = new AddingTask();
             addwindow.Show();
-            
         }
         private void Search_Click(object sender, RoutedEventArgs e)
         {
@@ -147,8 +146,10 @@ namespace CalendarApp
             settings.Show();
         }
 
-        private void PopulateCalendarGrid(int year, int month)
+        public void PopulateCalendarGrid(int year, int month)
         {
+            DatabaseManager databaseManager = new DatabaseManager();
+            
             // Get the first day of the month and the total days in the month
             DateTime firstDayOfMonth = new DateTime(year, month, 1);
             int daysInMonth = DateTime.DaysInMonth(year, month);
@@ -175,7 +176,8 @@ namespace CalendarApp
 
                 // Calculate the date for the current cell
                 DateTime currentDate = firstDayOfPreviousMonth.AddDays(day - 1);
-
+                var tasksForDate = databaseManager.RetrieveEventDataByDate(currentDate);
+                string taskNames = string.Join("\n", tasksForDate.Select(t => t.name));
                 // Create a label for each date
                 Button dateLabel = new Button
                 {
@@ -187,6 +189,8 @@ namespace CalendarApp
                     BorderThickness = new Thickness(1),
                     Background = Brushes.Transparent
                 };
+
+                dateLabel.Content += "\n" + taskNames;
 
                 // Set a different color for labels corresponding to dates outside the current month
                 if (currentDate.Month != month)
@@ -201,6 +205,8 @@ namespace CalendarApp
                     dateLabel.BorderBrush = Brushes.Black;
                     dateLabel.BorderThickness = new Thickness(2);
                 }
+
+                
 
                 // Add the label to the grid at the calculated row and column
                 CalendarGrid.Children.Add(dateLabel);

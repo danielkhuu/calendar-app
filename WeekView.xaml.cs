@@ -151,11 +151,16 @@ namespace CalendarApp
             // Populate the grid with dates
             for (int day = 1; day <= 7; day++)
             {
+                DatabaseManager databaseManager = new DatabaseManager();
+
                 // Calculate the row and column indices based on the total number of cells
                 int col = (day - 1) % 7; // Modulus to determine the column
 
                 // Calculate the date for the current cell
                 DateTime dummyDate = firstDayOfWeek.AddDays(day - 1);
+
+                var tasksForDate = databaseManager.RetrieveEventDataByDate(dummyDate);
+                string taskNames = string.Join("\n", tasksForDate.Select(t => t.name));
 
                 // Create a label for each date
                 Button dateLabel = new Button
@@ -175,6 +180,8 @@ namespace CalendarApp
                     dateLabel.BorderBrush = Brushes.Black;
                     dateLabel.BorderThickness = new Thickness(2);
                 }
+
+                dateLabel.Content += "\n" + taskNames;
 
                 // Add the label to the grid at the calculated row and column
                 CalendarGrid.Children.Add(dateLabel);

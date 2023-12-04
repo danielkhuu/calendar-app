@@ -19,19 +19,21 @@ namespace CalendarApp
     /// </summary>
     public partial class SearchTask : Window
     {
+        private DatabaseManager _databaseManager;
         public SearchTask()
         {
             InitializeComponent();
+            _databaseManager = new DatabaseManager();
         }
 
         private void SearchName_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            string _SearchName = SearchName.Text;
         }
 
         private void SearchDate_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            string _SearchDate = SearchDate.Text;
         }
 
         private void CancelTask_Click(object sender, RoutedEventArgs e)
@@ -41,12 +43,14 @@ namespace CalendarApp
 
         private void SearchTask_Click(object sender, RoutedEventArgs e)
         {
-
+            string _SearchName = SearchName.Text;
+            string _SearchDate = SearchDate.Text;
+            _databaseManager.SearchEvent(_SearchName, _SearchDate);
         }
 
         private void ScheduleType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
     }
 }
