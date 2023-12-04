@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Functions for WeekView page
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace CalendarApp
 {
-    /// <summary>
-    /// Interaction logic for WeekView.xaml
-    /// </summary>
     public partial class WeekView : Page
     {
         public string WeekRange { get; set; }
@@ -28,6 +27,7 @@ namespace CalendarApp
         {
             InitializeComponent();
 
+            // Initialize date variables for the page
             DateTime today = DateTime.Today;
             _month = today.Month;
             _year = today.Year;
@@ -35,12 +35,15 @@ namespace CalendarApp
             DateTime endOfWeek = startOfWeek.AddDays(6);
             _day = startOfWeek.Day;
 
+            // Display the week 
             WeekRange = $"{startOfWeek.ToShortDateString()} - {endOfWeek.ToShortDateString()}";
             WeekLabel.Content = WeekRange;
 
+            // Display the dates grid
             PopulateCalendarGrid(today);
         }
 
+        // Repopulates grid info for previous week
         private void PrevWeek_Click(object sender, RoutedEventArgs e)
         {
             DateTime prevWeek = new DateTime(_year, _month, _day);
@@ -56,6 +59,7 @@ namespace CalendarApp
             WeekLabel.Content = $"{prevWeek.ToShortDateString()} - {prevWeekEnd.ToShortDateString()}";
         }
 
+        // Repopulates grid info for next week
         private void NextWeek_Click(object sender, RoutedEventArgs e)
         {
             DateTime nextWeek = new DateTime(_year, _month, _day);
@@ -71,6 +75,7 @@ namespace CalendarApp
             WeekLabel.Content = $"{nextWeek.ToShortDateString()} - {nextWeekEnd.ToShortDateString()}";
         }
 
+        // Dropdown for changing the page
         private void OpenDropDown_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu dropdownMenu = new ContextMenu();
@@ -96,6 +101,7 @@ namespace CalendarApp
             dropdownMenu.IsOpen = true;
         }
 
+        // Changes the page based on which dropdown button was clicked
         private void DropdownButton_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = sender as Button;
@@ -124,25 +130,32 @@ namespace CalendarApp
             }
         }
 
+        // Opens add task window
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
             AddingTask addwindow = new AddingTask();
             addwindow.Show();
 
         }
+
+        // Opens search task window
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             SearchTask searchwindow = new SearchTask();
             searchwindow.Show();
         }
+
+        // Opens settings window
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             CalendarSettings settings = new CalendarSettings();
             settings.Show();
         }
+
+        // Creates and populates the dates grid
         private void PopulateCalendarGrid(DateTime dayX)
         { 
-            // Calculate the day of the week for the first day of the month (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+            // Calculate the first day of the week
             DateTime firstDayOfWeek = dayX.AddDays(-(int)dayX.DayOfWeek);
 
             // Clear existing content in the grid
@@ -159,6 +172,7 @@ namespace CalendarApp
                 // Calculate the date for the current cell
                 DateTime dummyDate = firstDayOfWeek.AddDays(day - 1);
 
+                // Get list of tasks for this date
                 var tasksForDate = databaseManager.RetrieveEventDataByDate(dummyDate);
                 string taskNames = string.Join("\n", tasksForDate.Select(t => t.name));
 
@@ -174,6 +188,7 @@ namespace CalendarApp
                     Background = Brushes.Transparent
                 };
 
+                // Change color for current date
                 if (dummyDate == DateTime.Today)
                 {
                     dateLabel.Foreground = Brushes.Pink;
@@ -181,6 +196,7 @@ namespace CalendarApp
                     dateLabel.BorderThickness = new Thickness(2);
                 }
 
+                // Display the names of the tasks for the date
                 dateLabel.Content += "\n" + taskNames;
 
                 // Add the label to the grid at the calculated row and column
