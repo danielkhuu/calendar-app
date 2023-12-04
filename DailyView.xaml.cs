@@ -25,17 +25,18 @@ namespace CalendarApp
         private int _month { get; set; }
         private int _year { get; set; }
         private int _day { get; set; }
+        private DateTime Today { get; set; }
         public DailyView()
         {
             InitializeComponent();
 
             DateTime today = DateTime.Today;
+            Today = today;
             _month = today.Month;
             _year = today.Year;
-            DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek);
-            _day = startOfWeek.Day;
+            _day = today.Day;
 
-            DayLabel.Content = startOfWeek.ToLongDateString();
+            DayLabel.Content = Today.ToLongDateString();
 
             PopulateCalendarGrid();
         }
@@ -140,9 +141,8 @@ namespace CalendarApp
             CalendarGrid.Children.Clear();
 
             DatabaseManager databaseManager = new DatabaseManager();
-
-            DateTime _today = new DateTime(_year, _month, _day);
-            var tasksForDate = databaseManager.RetrieveEventDataByDate(_today);
+            DateTime dateTime = new DateTime(_year, _month, _day);
+            var tasksForDate = databaseManager.RetrieveEventDataByDate(dateTime);
 
             int i = 1;
 
