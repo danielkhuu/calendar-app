@@ -33,9 +33,16 @@ namespace CalendarApp
             string _TaskDescription = TaskDescription.Text;
             string _TaskDate = TaskDate.Text;
             string _TaskType = ScheduleType.Text;
-            _databaseManager.AddEvent(_TaskName, _TaskDescription, _TaskDate, _TaskType);
-            MessageBox.Show("Task Added");
-            this.Close();
+            if (_TaskName != "" && _TaskDate != "")
+            {
+                _databaseManager.AddEvent(_TaskName, _TaskDescription, _TaskDate, _TaskType);
+                MessageBox.Show("Task Added.");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a name and date.");
+            }
         }
 
         private void TaskName_TextChanged(object sender, TextChangedEventArgs e)

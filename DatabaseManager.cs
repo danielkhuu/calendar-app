@@ -82,6 +82,7 @@ namespace CalendarApp
                     DateTime storedEventDate = result.CalendarDate;
 
                     returnData = SearchName + ": " + eventDescription + "\n Date:" + storedEventDate.ToString();
+                    MessageBox.Show(returnData);
                 }
                 else
                 {
@@ -91,7 +92,6 @@ namespace CalendarApp
 
                 }
             }
-            MessageBox.Show(returnData);
         }
 
         /* FindDay searches a date in CalendarDay table to retrieve its Id. If the date is not found, it creates a new record and returns its Id
@@ -147,7 +147,7 @@ namespace CalendarApp
                         // Step 2: Remove the event from the Event table
                         string removeEventQuery = "DELETE FROM Event WHERE Name = @EventName AND CalendarDayId = @CalendarDayId";
                         connection.Execute(removeEventQuery, new { EventName = eventName, CalendarDayId = calendarDayId }, transaction);
-
+                        MessageBox.Show(" Removed.");
                         // Step 3: Check if the CalendarDay has no more events
                         string remainingEventsQuery = "SELECT COUNT(*) FROM Event WHERE CalendarDayId = @CalendarDayId";
                         int remainingEvents = connection.ExecuteScalar<int>(remainingEventsQuery, new { CalendarDayId = calendarDayId }, transaction);
@@ -158,7 +158,6 @@ namespace CalendarApp
                             string removeCalendarDayQuery = "DELETE FROM CalendarDay WHERE Id = @CalendarDayId";
                             connection.Execute(removeCalendarDayQuery, new { CalendarDayId = calendarDayId }, transaction);
                         }
-                        MessageBox.Show("Removed");
                         transaction.Commit();
                     }
                     else
