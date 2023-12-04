@@ -44,12 +44,10 @@ namespace CalendarApp
             {
               
                 // Step 1: Check if the date exists in CalendarDay
-                //string calendarDayQuery = "SELECT Id FROM CalendarDay WHERE Date = @Date";
                 int calendarDayId = FindDay(_date);
 
                 // Step 2: Retrieve Event data based on the matching CalendarDayId
                 string eventQuery = "SELECT * FROM Event WHERE CalendarDayId = @CalendarDayId";
-                //var eventData = connection.Query<Event>(eventQuery, new { CalendarDayId = calendarDayId });
                 returnEvents = connection.Query<Event>(eventQuery, new { CalendarDayId = calendarDayId }).ToList();
             }
             return returnEvents;
@@ -94,11 +92,9 @@ namespace CalendarApp
                 }
             }
             MessageBox.Show(returnData);
-
-            //string query = "SELECT Event.* FROM Event INNER JOIN CalendarDay ON Event.calendarDayId = CalendarDay.id WHERE Event.name = 'searchName' AND CalendarDay.date = '_date'";
         }
 
-        /* FindDay searches a date in CalendarDay db to retrieve its Id. If the date is not found, it creates a new record and returns its Id
+        /* FindDay searches a date in CalendarDay table to retrieve its Id. If the date is not found, it creates a new record and returns its Id
                 * This method is used by AddEvent. If the date of the given event has existing events, we give the event to be added the Id of the calendarDay. */
         public int FindDay(DateTime date)
         {
