@@ -16,7 +16,7 @@ namespace CalendarApp
         private string connectionString;
         public static string CnnVal(string name) 
         {
-            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            return ConfigurationManager.ConnectionStrings[name]?.ConnectionString;
         }
 
         public Helper(string dbFilePath)

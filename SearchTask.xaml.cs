@@ -45,12 +45,33 @@ namespace CalendarApp
         {
             string _SearchName = SearchName.Text;
             string _SearchDate = SearchDate.Text;
-            _databaseManager.SearchEvent(_SearchName, _SearchDate);
+            if (_SearchName != "" && _SearchDate != "")
+            {
+                _databaseManager.SearchEvent(_SearchName, _SearchDate);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a name and date.");
+            }
         }
 
         private void ScheduleType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            string _SearchName = SearchName.Text;
+            string _SearchDate = SearchDate.Text;
+            if (_SearchName != "" && _SearchDate != "")
+            {
+                _databaseManager.RemoveEventAndCalendarDay(_SearchName, _SearchDate);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a name and date.");
+            }
         }
     }
 }
