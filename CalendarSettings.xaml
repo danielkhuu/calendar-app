@@ -4,14 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalendarApp"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="CalendarSettings" Height="350" Width="300" ResizeMode="NoResize">
     <Grid>
         <TextBlock Text="Appointment Color" HorizontalAlignment="Left" Margin="10,10,0,0"/>
-        <ColorPicker x:Name="BackgroundColorPicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0" SelectedColor="{Binding BackgroundColor.Color, Mode=TwoWay}" />
+        <xctk:ColorPicker x:Name="BackgroundColorPicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0" SelectedColor="{Binding BackgroundColor.Color, Mode=TwoWay}" />
 
         <TextBlock Text="Event Color" HorizontalAlignment="Left" Margin="10,70,0,0"/>
-        <ColorPicker x:Name="ForegroundColorPicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0" SelectedColor="{Binding ForegroundColor.Color, Mode=TwoWay}" />
+        <xctk:ColorPicker x:Name="ForegroundColorPicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0" SelectedColor="{Binding ForegroundColor.Color, Mode=TwoWay}" />
 
         <Button x:Name="CancelSettings" Width="50" Height="20" Content="Cancel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,75,10" Click="CancelSettings_Click"/>
         <Button x:Name="ApplySettings" Width="50" Height="20" Content="Apply" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Click="ApplySettings_Click"/>
